@@ -47,6 +47,8 @@ public class SeaboardReceiver : MonoBehaviour
             pendingFlap = false;
         }
     }
+
+    void OnDestroy()
     {
         if (server != null)
         {

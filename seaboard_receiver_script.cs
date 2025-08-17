@@ -13,6 +13,7 @@ public class SeaboardReceiver : MonoBehaviour
     private OscServer server;
     private bool lastNoteState = false;
     private bool currentNoteState = false;
+    private bool pendingFlap = false;
 
     void Start()
     {
@@ -37,7 +38,15 @@ public class SeaboardReceiver : MonoBehaviour
         Debug.Log($"OSC Server started on port {port}, listening for {oscAddress}");
     }
 
-    void OnDestroy()
+    void Update()
+    {
+        // Handle pending flap on main thread
+        if (pendingFlap)
+        {
+            TriggerBirdFlap();
+            pendingFlap = false;
+        }
+    }
     {
         if (server != null)
         {
@@ -58,7 +67,8 @@ public class SeaboardReceiver : MonoBehaviour
             // Detect note press (transition from false to true)
             if (currentNoteState && !lastNoteState)
             {
-                TriggerBirdFlap();
+                // Queue flap to execute on main thread
+                pendingFlap = true;
             }
             
             lastNoteState = currentNoteState;

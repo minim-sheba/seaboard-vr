@@ -67,6 +67,9 @@ int findVoiceByChannel(t_mpe_in *x, int channel) {
     return -1;  // Channel not found
 }
 
+// Forward declaration
+void mpe_in_noteoff(t_mpe_in *x, t_floatarg note, t_floatarg velocity, t_floatarg channel);
+
 // Handle note on
 void mpe_in_noteon(t_mpe_in *x, t_floatarg note, t_floatarg velocity, t_floatarg channel) {
     if (velocity <= 0) {
@@ -216,17 +219,15 @@ void mpe_in_setup(void) {
         0,  // No destructor needed for now
         sizeof(t_mpe_in),
         CLASS_DEFAULT,
-        0
+        (t_atomtype)0
     );
     
     // Add MIDI input methods
-    class_addmethod(mpe_in_class, (t_method)mpe_in_noteon, gensym("noteon"), A_FLOAT, A_FLOAT, A_FLOAT, 0);
-    class_addmethod(mpe_in_class, (t_method)mpe_in_noteoff, gensym("noteoff"), A_FLOAT, A_FLOAT, A_FLOAT, 0);
-    class_addmethod(mpe_in_class, (t_method)mpe_in_pitchbend, gensym("pitchbend"), A_FLOAT, A_FLOAT, 0);
-    class_addmethod(mpe_in_class, (t_method)mpe_in_controlchange, gensym("controlchange"), A_FLOAT, A_FLOAT, A_FLOAT, 0);
+    class_addmethod(mpe_in_class, (t_method)mpe_in_noteon, gensym("noteon"), A_FLOAT, A_FLOAT, A_FLOAT, (t_atomtype)0);
+    class_addmethod(mpe_in_class, (t_method)mpe_in_noteoff, gensym("noteoff"), A_FLOAT, A_FLOAT, A_FLOAT, (t_atomtype)0);
+    class_addmethod(mpe_in_class, (t_method)mpe_in_pitchbend, gensym("pitchbend"), A_FLOAT, A_FLOAT, (t_atomtype)0);
+    class_addmethod(mpe_in_class, (t_method)mpe_in_controlchange, gensym("controlchange"), A_FLOAT, A_FLOAT, A_FLOAT, (t_atomtype)0);
 }
 
 // Entry point for Pure Data
-extern "C" {
 void mpe_in_setup(void);
-}

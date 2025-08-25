@@ -101,15 +101,13 @@ void mpe_voice_setup(void) {
         sizeof(t_mpe_voice),
         CLASS_DEFAULT,
         A_DEFFLOAT,  // Voice number argument
-        0
+        (t_atomtype)0
     );
     
     // Add methods
-    class_addmethod(mpe_voice_class, (t_method)mpe_voice_list, gensym("list"), A_GIMME, 0);
-    class_addmethod(mpe_voice_class, (t_method)mpe_voice_bang, gensym("bang"), 0);
+    class_addmethod(mpe_voice_class, (t_method)mpe_voice_list, gensym("list"), A_GIMME, (t_atomtype)0);
+    class_addmethod(mpe_voice_class, (t_method)mpe_voice_bang, gensym("bang"), (t_atomtype)0);
 }
 
 // Entry point for Pure Data
-extern "C" {
 void mpe_voice_setup(void);
-}

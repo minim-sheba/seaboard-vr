@@ -212,7 +212,7 @@ void mpe_in_controlchange(t_mpe_in *x, t_floatarg controller, t_floatarg value, 
 }
 
 // Setup function
-void mpe_in_setup(void) {
+extern "C" void mpe_in_setup(void) {
     mpe_in_class = class_new(
         gensym("mpe-in"),
         (t_newmethod)mpe_in_new,
@@ -227,9 +227,4 @@ void mpe_in_setup(void) {
     class_addmethod(mpe_in_class, (t_method)mpe_in_noteoff, gensym("noteoff"), A_FLOAT, A_FLOAT, A_FLOAT, (t_atomtype)0);
     class_addmethod(mpe_in_class, (t_method)mpe_in_pitchbend, gensym("pitchbend"), A_FLOAT, A_FLOAT, (t_atomtype)0);
     class_addmethod(mpe_in_class, (t_method)mpe_in_controlchange, gensym("controlchange"), A_FLOAT, A_FLOAT, A_FLOAT, (t_atomtype)0);
-}
-
-// Entry point for Pure Data
-extern "C" {
-    void mpe_in_setup(void);
 }

@@ -93,7 +93,7 @@ void mpe_voice_bang(t_mpe_voice *x) {
 }
 
 // Setup function
-void mpe_voice_setup(void) {
+extern "C" void mpe_voice_setup(void) {
     mpe_voice_class = class_new(
         gensym("mpe-voice"),
         (t_newmethod)mpe_voice_new,
@@ -107,9 +107,4 @@ void mpe_voice_setup(void) {
     // Add methods
     class_addmethod(mpe_voice_class, (t_method)mpe_voice_list, gensym("list"), A_GIMME, (t_atomtype)0);
     class_addmethod(mpe_voice_class, (t_method)mpe_voice_bang, gensym("bang"), (t_atomtype)0);
-}
-
-// Entry point for Pure Data
-extern "C" {
-    void mpe_voice_setup(void);
 }

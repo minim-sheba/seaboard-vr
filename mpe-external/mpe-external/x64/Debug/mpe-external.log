@@ -1,9 +1,12 @@
-﻿  mpe.cpp
-mpe.obj : error LNK2019: unresolved external symbol mpe_in_setup referenced in function mpe_setup
-    Hint on symbols that are defined and could potentially match:
-      "void __cdecl mpe_in_setup(void)" (?mpe_in_setup@@YAXXZ)
-mpe.obj : error LNK2019: unresolved external symbol mpe_voice_setup referenced in function mpe_setup
-    Hint on symbols that are defined and could potentially match:
-      "void __cdecl mpe_voice_setup(void)" (?mpe_voice_setup@@YAXXZ)
-MSVCRTD.lib(exe_winmain.obj) : error LNK2019: unresolved external symbol WinMain referenced in function "int __cdecl invoke_main(void)" (?invoke_main@@YAHXZ)
-C:\Users\caitlin\OneDrive - Royal Holloway University of London\_Personal\GitHub\seaboard-vr\mpe-external\x64\Debug\mpe-external.exe : fatal error LNK1120: 3 unresolved externals
+﻿  mpe-in.cpp
+C:\Users\caitlin\OneDrive - Royal Holloway University of London\_Personal\GitHub\seaboard-vr\mpe-external\mpe-in.cpp(234,10): error C2732: linkage specification contradicts earlier specification for 'mpe_in_setup'
+      C:\Users\caitlin\OneDrive - Royal Holloway University of London\_Personal\GitHub\seaboard-vr\mpe-external\mpe-in.cpp(234,10):
+      see declaration of 'mpe_in_setup'
+  
+  mpe-voice.cpp
+C:\Users\caitlin\OneDrive - Royal Holloway University of London\_Personal\GitHub\seaboard-vr\mpe-external\mpe-voice.cpp(114,10): error C2732: linkage specification contradicts earlier specification for 'mpe_voice_setup'
+      C:\Users\caitlin\OneDrive - Royal Holloway University of London\_Personal\GitHub\seaboard-vr\mpe-external\mpe-voice.cpp(114,10):
+      see declaration of 'mpe_voice_setup'
+  
+  mpe.cpp
+  Generating Code...

@@ -1,12 +1,5 @@
 ﻿  mpe-in.cpp
-C:\Users\caitlin\OneDrive - Royal Holloway University of London\_Personal\GitHub\seaboard-vr\mpe-external\mpe-in.cpp(234,10): error C2732: linkage specification contradicts earlier specification for 'mpe_in_setup'
-      C:\Users\caitlin\OneDrive - Royal Holloway University of London\_Personal\GitHub\seaboard-vr\mpe-external\mpe-in.cpp(234,10):
-      see declaration of 'mpe_in_setup'
-  
   mpe-voice.cpp
-C:\Users\caitlin\OneDrive - Royal Holloway University of London\_Personal\GitHub\seaboard-vr\mpe-external\mpe-voice.cpp(114,10): error C2732: linkage specification contradicts earlier specification for 'mpe_voice_setup'
-      C:\Users\caitlin\OneDrive - Royal Holloway University of London\_Personal\GitHub\seaboard-vr\mpe-external\mpe-voice.cpp(114,10):
-      see declaration of 'mpe_voice_setup'
-  
   mpe.cpp
   Generating Code...
+  mpe-external.vcxproj -> C:\Users\caitlin\OneDrive - Royal Holloway University of London\_Personal\GitHub\seaboard-vr\mpe-external\x64\Debug\mpe.dll

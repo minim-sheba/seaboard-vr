@@ -1,0 +1,5 @@
+#N canvas 1192 536 450 267 12;
+#X declare -path mpe;
+#X obj 72 38 mpe-in;
+#X obj 73 110 mpe-voice 1;
+#X obj 174 7 declare -path mpe;

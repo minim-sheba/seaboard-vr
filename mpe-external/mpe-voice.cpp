@@ -110,4 +110,6 @@ void mpe_voice_setup(void) {
 }
 
 // Entry point for Pure Data
-void mpe_voice_setup(void);
+extern "C" {
+    void mpe_voice_setup(void);
+}

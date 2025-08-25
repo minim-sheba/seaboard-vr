@@ -230,4 +230,6 @@ void mpe_in_setup(void) {
 }
 
 // Entry point for Pure Data
-void mpe_in_setup(void);
+extern "C" {
+    void mpe_in_setup(void);
+}

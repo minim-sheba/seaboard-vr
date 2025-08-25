@@ -1,25 +1,4 @@
-﻿  mpe-in.cpp
-  mpe-voice.cpp
-  Generating Code...
-mpe-in.obj : error LNK2019: unresolved external symbol __imp_gensym referenced in function "void __cdecl mpe_in_setup(void)" (?mpe_in_setup@@YAXXZ)
-mpe-voice.obj : error LNK2001: unresolved external symbol __imp_gensym
-mpe-in.obj : error LNK2019: unresolved external symbol __imp_clock_getlogicaltime referenced in function "void __cdecl mpe_in_noteon(struct _mpe_in *,float,float,float)" (?mpe_in_noteon@@YAXPEAU_mpe_in@@MMM@Z)
-mpe-in.obj : error LNK2019: unresolved external symbol __imp_pd_new referenced in function "void * __cdecl mpe_in_new(void)" (?mpe_in_new@@YAPEAXXZ)
-mpe-voice.obj : error LNK2001: unresolved external symbol __imp_pd_new
-mpe-in.obj : error LNK2019: unresolved external symbol __imp_outlet_new referenced in function "void * __cdecl mpe_in_new(void)" (?mpe_in_new@@YAPEAXXZ)
-mpe-voice.obj : error LNK2001: unresolved external symbol __imp_outlet_new
-mpe-in.obj : error LNK2019: unresolved external symbol __imp_outlet_list referenced in function "void __cdecl mpe_in_controlchange(struct _mpe_in *,float,float,float)" (?mpe_in_controlchange@@YAXPEAU_mpe_in@@MMM@Z)
-mpe-in.obj : error LNK2019: unresolved external symbol __imp_class_new referenced in function "void __cdecl mpe_in_setup(void)" (?mpe_in_setup@@YAXXZ)
-mpe-voice.obj : error LNK2001: unresolved external symbol __imp_class_new
-mpe-in.obj : error LNK2019: unresolved external symbol __imp_class_addmethod referenced in function "void __cdecl mpe_in_setup(void)" (?mpe_in_setup@@YAXXZ)
-mpe-voice.obj : error LNK2001: unresolved external symbol __imp_class_addmethod
-mpe-in.obj : error LNK2019: unresolved external symbol __imp_post referenced in function "void * __cdecl mpe_in_new(void)" (?mpe_in_new@@YAPEAXXZ)
-mpe-voice.obj : error LNK2001: unresolved external symbol __imp_post
-mpe.obj : error LNK2001: unresolved external symbol __imp_post
-mpe-in.obj : error LNK2019: unresolved external symbol __imp_s_list referenced in function "void __cdecl mpe_in_controlchange(struct _mpe_in *,float,float,float)" (?mpe_in_controlchange@@YAXPEAU_mpe_in@@MMM@Z)
-mpe-voice.obj : error LNK2019: unresolved external symbol __imp_atom_getfloat referenced in function "void __cdecl mpe_voice_list(struct _mpe_voice *,struct _symbol *,int,struct _atom *)" (?mpe_voice_list@@YAXPEAU_mpe_voice@@PEAU_symbol@@HPEAU_atom@@@Z)
-mpe-voice.obj : error LNK2019: unresolved external symbol __imp_outlet_float referenced in function "void __cdecl mpe_voice_list(struct _mpe_voice *,struct _symbol *,int,struct _atom *)" (?mpe_voice_list@@YAXPEAU_mpe_voice@@PEAU_symbol@@HPEAU_atom@@@Z)
-mpe-voice.obj : error LNK2019: unresolved external symbol __imp_s_float referenced in function "void * __cdecl mpe_voice_new(float)" (?mpe_voice_new@@YAPEAXM@Z)
+﻿  mpe.cpp
 mpe.obj : error LNK2019: unresolved external symbol mpe_in_setup referenced in function mpe_setup
     Hint on symbols that are defined and could potentially match:
       "void __cdecl mpe_in_setup(void)" (?mpe_in_setup@@YAXXZ)
@@ -27,4 +6,4 @@ mpe.obj : error LNK2019: unresolved external symbol mpe_voice_setup referenced i
     Hint on symbols that are defined and could potentially match:
       "void __cdecl mpe_voice_setup(void)" (?mpe_voice_setup@@YAXXZ)
 MSVCRTD.lib(exe_winmain.obj) : error LNK2019: unresolved external symbol WinMain referenced in function "int __cdecl invoke_main(void)" (?invoke_main@@YAHXZ)
-C:\Users\caitlin\OneDrive - Royal Holloway University of London\_Personal\GitHub\seaboard-vr\mpe-external\x64\Debug\mpe-external.exe : fatal error LNK1120: 15 unresolved externals
+C:\Users\caitlin\OneDrive - Royal Holloway University of London\_Personal\GitHub\seaboard-vr\mpe-external\x64\Debug\mpe-external.exe : fatal error LNK1120: 3 unresolved externals

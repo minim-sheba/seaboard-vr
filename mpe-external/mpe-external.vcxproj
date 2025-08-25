@@ -97,6 +97,7 @@
       <SubSystem>Windows</SubSystem>
       <AdditionalLibraryDirectories>C:\Program Files\Pd\bin;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>pd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ModuleDefinitionFile>mpe.def</ModuleDefinitionFile>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

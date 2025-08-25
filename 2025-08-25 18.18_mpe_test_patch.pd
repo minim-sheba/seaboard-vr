@@ -1,0 +1,55 @@
+#N canvas 0 0 800 600 12;
+
+; MIDI Input section
+#X obj 50 50 notein;
+#X obj 50 100 pack f f f;
+#X msg 50 130 noteon $1 $2 $3;
+
+#X obj 200 50 bendin;
+#X obj 200 100 pack f f;
+#X msg 200 130 pitchbend $1 $2;
+
+#X obj 350 50 ctlin;
+#X obj 350 100 pack f f f;
+#X msg 350 130 controlchange $1 $2 $3;
+
+; MPE objects
+#X obj 50 200 mpe-in;
+#X obj 50 250 mpe-voice 1;
+
+; Debug outputs
+#X obj 50 300 print note;
+#X obj 100 300 print strike;
+#X obj 150 300 print press;
+#X obj 200 300 print glide;
+#X obj 250 300 print slide;
+#X obj 300 300 print lift;
+
+; Connect MIDI inputs to mpe-in
+#X connect 0 0 1 0;
+#X connect 0 1 1 1;
+#X connect 0 2 1 2;
+#X connect 1 0 2 0;
+#X connect 2 0 9 0;
+
+#X connect 3 0 4 0;
+#X connect 3 1 4 1;
+#X connect 4 0 5 0;
+#X connect 5 0 9 0;
+
+#X connect 6 0 7 0;
+#X connect 6 1 7 1;
+#X connect 6 2 7 2;
+#X connect 7 0 8 0;
+#X connect 8 0 9 0;
+
+; Connect mpe-in to mpe-voice
+#X connect 9 0 10 0;
+
+; Connect mpe-voice outputs to debug prints
+#X connect 10 0 11 0;
+#X connect 10 1 12 0;
+#X connect 10 2 13 0;
+#X connect 10 3 14 0;
+#X connect 10 4 15 0;
+#X connect 10 5 16 0;

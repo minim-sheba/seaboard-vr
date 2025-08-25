@@ -1,0 +1,29 @@
+﻿  mpe-in.cpp
+  mpe-voice.cpp
+C:\Users\caitlin\OneDrive - Royal Holloway University of London\_Personal\GitHub\seaboard-vr\mpe-external\mpe-in.cpp(74,9): error C3861: 'mpe_in_noteoff': identifier not found
+C:\Users\caitlin\OneDrive - Royal Holloway University of London\_Personal\GitHub\seaboard-vr\mpe-external\mpe-in.cpp(213,20): error C2664: '_class *class_new(t_symbol *,t_newmethod,t_method,size_t,int,t_atomtype,...)': cannot convert argument 6 from 'int' to 't_atomtype'
+      C:\Users\caitlin\OneDrive - Royal Holloway University of London\_Personal\GitHub\seaboard-vr\mpe-external\mpe-in.cpp(219,9):
+      Conversion to enumeration type requires an explicit cast (static_cast, C-style cast or parenthesized function-style cast)
+      C:\Program Files\Pd\src\m_pd.h(542,17):
+      see declaration of 'class_new'
+      C:\Users\caitlin\OneDrive - Royal Holloway University of London\_Personal\GitHub\seaboard-vr\mpe-external\mpe-in.cpp(213,20):
+      while trying to match the argument list '(t_symbol *, t_newmethod, int, size_t, int, int)'
+  
+C:\Users\caitlin\OneDrive - Royal Holloway University of London\_Personal\GitHub\seaboard-vr\mpe-external\mpe-in.cpp(231,6): error C2732: linkage specification contradicts earlier specification for 'mpe_in_setup'
+      C:\Users\caitlin\OneDrive - Royal Holloway University of London\_Personal\GitHub\seaboard-vr\mpe-external\mpe-in.cpp(231,6):
+      see declaration of 'mpe_in_setup'
+  
+C:\Users\caitlin\OneDrive - Royal Holloway University of London\_Personal\GitHub\seaboard-vr\mpe-external\mpe-voice.cpp(109,5): error C2664: 'void class_addmethod(_class *,t_method,t_symbol *,t_atomtype,...)': cannot convert argument 4 from 'int' to 't_atomtype'
+      C:\Users\caitlin\OneDrive - Royal Holloway University of London\_Personal\GitHub\seaboard-vr\mpe-external\mpe-voice.cpp(109,80):
+      Conversion to enumeration type requires an explicit cast (static_cast, C-style cast or parenthesized function-style cast)
+      C:\Program Files\Pd\src\m_pd.h(556,13):
+      see declaration of 'class_addmethod'
+      C:\Users\caitlin\OneDrive - Royal Holloway University of London\_Personal\GitHub\seaboard-vr\mpe-external\mpe-voice.cpp(109,5):
+      while trying to match the argument list '(_class *, t_method, t_symbol *, int)'
+  
+C:\Users\caitlin\OneDrive - Royal Holloway University of London\_Personal\GitHub\seaboard-vr\mpe-external\mpe-voice.cpp(114,6): error C2732: linkage specification contradicts earlier specification for 'mpe_voice_setup'
+      C:\Users\caitlin\OneDrive - Royal Holloway University of London\_Personal\GitHub\seaboard-vr\mpe-external\mpe-voice.cpp(114,6):
+      see declaration of 'mpe_voice_setup'
+  
+  mpe.cpp
+  Generating Code...

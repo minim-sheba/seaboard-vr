@@ -1,29 +1,30 @@
 ﻿  mpe-in.cpp
   mpe-voice.cpp
-C:\Users\caitlin\OneDrive - Royal Holloway University of London\_Personal\GitHub\seaboard-vr\mpe-external\mpe-in.cpp(74,9): error C3861: 'mpe_in_noteoff': identifier not found
-C:\Users\caitlin\OneDrive - Royal Holloway University of London\_Personal\GitHub\seaboard-vr\mpe-external\mpe-in.cpp(213,20): error C2664: '_class *class_new(t_symbol *,t_newmethod,t_method,size_t,int,t_atomtype,...)': cannot convert argument 6 from 'int' to 't_atomtype'
-      C:\Users\caitlin\OneDrive - Royal Holloway University of London\_Personal\GitHub\seaboard-vr\mpe-external\mpe-in.cpp(219,9):
-      Conversion to enumeration type requires an explicit cast (static_cast, C-style cast or parenthesized function-style cast)
-      C:\Program Files\Pd\src\m_pd.h(542,17):
-      see declaration of 'class_new'
-      C:\Users\caitlin\OneDrive - Royal Holloway University of London\_Personal\GitHub\seaboard-vr\mpe-external\mpe-in.cpp(213,20):
-      while trying to match the argument list '(t_symbol *, t_newmethod, int, size_t, int, int)'
-  
-C:\Users\caitlin\OneDrive - Royal Holloway University of London\_Personal\GitHub\seaboard-vr\mpe-external\mpe-in.cpp(231,6): error C2732: linkage specification contradicts earlier specification for 'mpe_in_setup'
-      C:\Users\caitlin\OneDrive - Royal Holloway University of London\_Personal\GitHub\seaboard-vr\mpe-external\mpe-in.cpp(231,6):
-      see declaration of 'mpe_in_setup'
-  
-C:\Users\caitlin\OneDrive - Royal Holloway University of London\_Personal\GitHub\seaboard-vr\mpe-external\mpe-voice.cpp(109,5): error C2664: 'void class_addmethod(_class *,t_method,t_symbol *,t_atomtype,...)': cannot convert argument 4 from 'int' to 't_atomtype'
-      C:\Users\caitlin\OneDrive - Royal Holloway University of London\_Personal\GitHub\seaboard-vr\mpe-external\mpe-voice.cpp(109,80):
-      Conversion to enumeration type requires an explicit cast (static_cast, C-style cast or parenthesized function-style cast)
-      C:\Program Files\Pd\src\m_pd.h(556,13):
-      see declaration of 'class_addmethod'
-      C:\Users\caitlin\OneDrive - Royal Holloway University of London\_Personal\GitHub\seaboard-vr\mpe-external\mpe-voice.cpp(109,5):
-      while trying to match the argument list '(_class *, t_method, t_symbol *, int)'
-  
-C:\Users\caitlin\OneDrive - Royal Holloway University of London\_Personal\GitHub\seaboard-vr\mpe-external\mpe-voice.cpp(114,6): error C2732: linkage specification contradicts earlier specification for 'mpe_voice_setup'
-      C:\Users\caitlin\OneDrive - Royal Holloway University of London\_Personal\GitHub\seaboard-vr\mpe-external\mpe-voice.cpp(114,6):
-      see declaration of 'mpe_voice_setup'
-  
-  mpe.cpp
   Generating Code...
+mpe-in.obj : error LNK2019: unresolved external symbol __imp_gensym referenced in function "void __cdecl mpe_in_setup(void)" (?mpe_in_setup@@YAXXZ)
+mpe-voice.obj : error LNK2001: unresolved external symbol __imp_gensym
+mpe-in.obj : error LNK2019: unresolved external symbol __imp_clock_getlogicaltime referenced in function "void __cdecl mpe_in_noteon(struct _mpe_in *,float,float,float)" (?mpe_in_noteon@@YAXPEAU_mpe_in@@MMM@Z)
+mpe-in.obj : error LNK2019: unresolved external symbol __imp_pd_new referenced in function "void * __cdecl mpe_in_new(void)" (?mpe_in_new@@YAPEAXXZ)
+mpe-voice.obj : error LNK2001: unresolved external symbol __imp_pd_new
+mpe-in.obj : error LNK2019: unresolved external symbol __imp_outlet_new referenced in function "void * __cdecl mpe_in_new(void)" (?mpe_in_new@@YAPEAXXZ)
+mpe-voice.obj : error LNK2001: unresolved external symbol __imp_outlet_new
+mpe-in.obj : error LNK2019: unresolved external symbol __imp_outlet_list referenced in function "void __cdecl mpe_in_controlchange(struct _mpe_in *,float,float,float)" (?mpe_in_controlchange@@YAXPEAU_mpe_in@@MMM@Z)
+mpe-in.obj : error LNK2019: unresolved external symbol __imp_class_new referenced in function "void __cdecl mpe_in_setup(void)" (?mpe_in_setup@@YAXXZ)
+mpe-voice.obj : error LNK2001: unresolved external symbol __imp_class_new
+mpe-in.obj : error LNK2019: unresolved external symbol __imp_class_addmethod referenced in function "void __cdecl mpe_in_setup(void)" (?mpe_in_setup@@YAXXZ)
+mpe-voice.obj : error LNK2001: unresolved external symbol __imp_class_addmethod
+mpe-in.obj : error LNK2019: unresolved external symbol __imp_post referenced in function "void * __cdecl mpe_in_new(void)" (?mpe_in_new@@YAPEAXXZ)
+mpe-voice.obj : error LNK2001: unresolved external symbol __imp_post
+mpe.obj : error LNK2001: unresolved external symbol __imp_post
+mpe-in.obj : error LNK2019: unresolved external symbol __imp_s_list referenced in function "void __cdecl mpe_in_controlchange(struct _mpe_in *,float,float,float)" (?mpe_in_controlchange@@YAXPEAU_mpe_in@@MMM@Z)
+mpe-voice.obj : error LNK2019: unresolved external symbol __imp_atom_getfloat referenced in function "void __cdecl mpe_voice_list(struct _mpe_voice *,struct _symbol *,int,struct _atom *)" (?mpe_voice_list@@YAXPEAU_mpe_voice@@PEAU_symbol@@HPEAU_atom@@@Z)
+mpe-voice.obj : error LNK2019: unresolved external symbol __imp_outlet_float referenced in function "void __cdecl mpe_voice_list(struct _mpe_voice *,struct _symbol *,int,struct _atom *)" (?mpe_voice_list@@YAXPEAU_mpe_voice@@PEAU_symbol@@HPEAU_atom@@@Z)
+mpe-voice.obj : error LNK2019: unresolved external symbol __imp_s_float referenced in function "void * __cdecl mpe_voice_new(float)" (?mpe_voice_new@@YAPEAXM@Z)
+mpe.obj : error LNK2019: unresolved external symbol mpe_in_setup referenced in function mpe_setup
+    Hint on symbols that are defined and could potentially match:
+      "void __cdecl mpe_in_setup(void)" (?mpe_in_setup@@YAXXZ)
+mpe.obj : error LNK2019: unresolved external symbol mpe_voice_setup referenced in function mpe_setup
+    Hint on symbols that are defined and could potentially match:
+      "void __cdecl mpe_voice_setup(void)" (?mpe_voice_setup@@YAXXZ)
+MSVCRTD.lib(exe_winmain.obj) : error LNK2019: unresolved external symbol WinMain referenced in function "int __cdecl invoke_main(void)" (?invoke_main@@YAHXZ)
+C:\Users\caitlin\OneDrive - Royal Holloway University of London\_Personal\GitHub\seaboard-vr\mpe-external\x64\Debug\mpe-external.exe : fatal error LNK1120: 15 unresolved externals

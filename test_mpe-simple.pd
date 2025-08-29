@@ -1,0 +1,18 @@
+#N canvas 962 883 939 1009 12;
+#X declare -lib mpesimple;
+#X obj 126 85 notein;
+#X obj 127 154 pack f f f;
+#X obj 133 203 list prepend noteon;
+#X obj 131 259 list trim;
+#X obj 156 327 mpe-in-simple;
+#X obj 143 383 unpack f f;
+#X obj 134 435 print note;
+#X obj 242 435 print velocity;
+#X obj 391 303 declare -lib mpesimple;
+#X connect 0 0 1 0;
+#X connect 0 1 1 1;
+#X connect 0 2 1 2;
+#X connect 1 0 2 0;
+#X connect 2 0 3 0;
+#X connect 5 0 6 0;
+#X connect 5 1 7 0;

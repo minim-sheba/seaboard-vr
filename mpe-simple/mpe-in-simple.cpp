@@ -1,8 +1,5 @@
 #include "m_pd.h"
 
-// Forward declaration
-void mpe_in_simple_noteoff(t_mpe_in_simple *x, t_floatarg note, t_floatarg velocity, t_floatarg channel);
-
 // Simple structure - no STL containers
 typedef struct _mpe_in_simple {
     t_object x_obj;
@@ -13,20 +10,21 @@ typedef struct _mpe_in_simple {
 
 static t_class *mpe_in_simple_class;
 
-// Constructor
-void *mpe_in_simple_new(void) {
-    t_mpe_in_simple *x = (t_mpe_in_simple *)pd_new(mpe_in_simple_class);
+// Handle noteoff message (defined before noteon to avoid forward declaration issues)
+void mpe_in_simple_noteoff(t_mpe_in_simple *x, t_floatarg note, t_floatarg velocity, t_floatarg channel) {
+    post("mpe-in-simple: noteoff %.0f %.0f %.0f", note, velocity, channel);
     
-    // Create one outlet
-    x->voice_outlet = outlet_new(&x->x_obj, &s_list);
-    
-    // Initialize state
+    // Turn off note
     x->currentNote = 0;
     x->currentVelocity = 0.0f;
     
-    post("mpe-in-simple: Simple MPE processor initialized");
+    // Send note off: 0 0
+    t_atom output[2];
+    SETFLOAT(&output[0], 0);  // Note 0 means off
+    SETFLOAT(&output[1], velocity / 127.0f);  // Release velocity
     
-    return (void *)x;
+    outlet_list(x->voice_outlet, &s_list, 2, output);
+    post("mpe-in-simple: Note off sent");
 }
 
 // Handle noteon message
@@ -51,26 +49,25 @@ void mpe_in_simple_noteon(t_mpe_in_simple *x, t_floatarg note, t_floatarg veloci
     }
 }
 
-// Handle noteoff message
-void mpe_in_simple_noteoff(t_mpe_in_simple *x, t_floatarg note, t_floatarg velocity, t_floatarg channel) {
-    post("mpe-in-simple: noteoff %.0f %.0f %.0f", note, velocity, channel);
+// Constructor
+void *mpe_in_simple_new(void) {
+    t_mpe_in_simple *x = (t_mpe_in_simple *)pd_new(mpe_in_simple_class);
     
-    // Turn off note
+    // Create one outlet
+    x->voice_outlet = outlet_new(&x->x_obj, &s_list);
+    
+    // Initialize state
     x->currentNote = 0;
     x->currentVelocity = 0.0f;
     
-    // Send note off: 0 0
-    t_atom output[2];
-    SETFLOAT(&output[0], 0);  // Note 0 means off
-    SETFLOAT(&output[1], velocity / 127.0f);  // Release velocity
+    post("mpe-in-simple: Simple MPE processor initialized");
     
-    outlet_list(x->voice_outlet, &s_list, 2, output);
-    post("mpe-in-simple: Note off");
+    return (void *)x;
 }
 
 // Handle bang (for testing)
 void mpe_in_simple_bang(t_mpe_in_simple *x) {
-    post("mpe-in-simple: bang received - current note %.0f", (float)x->currentNote);
+    post("mpe-in-simple: bang received - current note %d", x->currentNote);
 }
 
 // Setup function

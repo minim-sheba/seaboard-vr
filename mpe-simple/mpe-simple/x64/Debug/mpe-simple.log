@@ -1,4 +1,6 @@
 ﻿  mpe-in-simple.cpp
-C:\Users\caitlin\OneDrive - Royal Holloway University of London\_Personal\GitHub\seaboard-vr\mpe-simple\mpe-in-simple.cpp(47,9): error C3861: 'mpe_in_simple_noteoff': identifier not found
-  mpe-simple.cpp
-  Generating Code...
+C:\Users\caitlin\OneDrive - Royal Holloway University of London\_Personal\GitHub\seaboard-vr\mpe-simple\mpe-in-simple.cpp(4,28): error C2065: 't_mpe_in_simple': undeclared identifier
+C:\Users\caitlin\OneDrive - Royal Holloway University of London\_Personal\GitHub\seaboard-vr\mpe-simple\mpe-in-simple.cpp(4,45): error C2065: 'x': undeclared identifier
+C:\Users\caitlin\OneDrive - Royal Holloway University of London\_Personal\GitHub\seaboard-vr\mpe-simple\mpe-in-simple.cpp(4,48): error C2275: 't_floatarg': expected an expression instead of a type
+C:\Users\caitlin\OneDrive - Royal Holloway University of London\_Personal\GitHub\seaboard-vr\mpe-simple\mpe-in-simple.cpp(4,59): error C2146: syntax error: missing ')' before identifier 'note'
+C:\Users\caitlin\OneDrive - Royal Holloway University of London\_Personal\GitHub\seaboard-vr\mpe-simple\mpe-in-simple.cpp(50,9): error C3861: 'mpe_in_simple_noteoff': identifier not found

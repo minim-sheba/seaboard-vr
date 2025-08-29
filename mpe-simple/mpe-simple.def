@@ -1,4 +1,3 @@
 EXPORTS
 mpe_simple_setup
-mpe_in_setup
-mpe_voice_setup
+mpe_in_simple_setup

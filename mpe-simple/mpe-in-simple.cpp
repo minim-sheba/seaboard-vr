@@ -1,5 +1,8 @@
 #include "m_pd.h"
 
+// Forward declaration
+void mpe_in_simple_noteoff(t_mpe_in_simple *x, t_floatarg note, t_floatarg velocity, t_floatarg channel);
+
 // Simple structure - no STL containers
 typedef struct _mpe_in_simple {
     t_object x_obj;

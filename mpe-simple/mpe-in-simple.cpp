@@ -6,6 +6,7 @@ typedef struct _mpe_in_simple {
     t_outlet *voice_outlet;  // Just one voice outlet for now
     int currentNote;         // Currently playing note (0 = off)
     float currentVelocity;   // Current velocity
+    float currentGlide;      // Current pitch bend value (-1 to +1)
 } t_mpe_in_simple;
 
 static t_class *mpe_in_simple_class;
@@ -18,12 +19,13 @@ void mpe_in_simple_noteoff(t_mpe_in_simple *x, t_floatarg note, t_floatarg veloc
     x->currentNote = 0;
     x->currentVelocity = 0.0f;
     
-    // Send note off: 0 0
-    t_atom output[2];
+    // Send note off: 0 0 glide
+    t_atom output[3];
     SETFLOAT(&output[0], 0);  // Note 0 means off
     SETFLOAT(&output[1], velocity / 127.0f);  // Release velocity
+    SETFLOAT(&output[2], x->currentGlide);  // Keep last glide value
     
-    outlet_list(x->voice_outlet, &s_list, 2, output);
+    outlet_list(x->voice_outlet, &s_list, 3, output);
     post("mpe-in-simple: Note off sent");
 }
 
@@ -36,12 +38,13 @@ void mpe_in_simple_noteon(t_mpe_in_simple *x, t_floatarg note, t_floatarg veloci
         x->currentNote = (int)note;
         x->currentVelocity = velocity / 127.0f;  // Scale to 0-1
         
-        // Send simple output: note strike
-        t_atom output[2];
+        // Send simple output: note strike glide
+        t_atom output[3];
         SETFLOAT(&output[0], x->currentNote);
         SETFLOAT(&output[1], x->currentVelocity);
+        SETFLOAT(&output[2], x->currentGlide);
         
-        outlet_list(x->voice_outlet, &s_list, 2, output);
+        outlet_list(x->voice_outlet, &s_list, 3, output);
         post("mpe-in-simple: Note %.0f on, velocity %.3f", note, x->currentVelocity);
     } else {
         // Note off (velocity 0)
@@ -59,10 +62,30 @@ void *mpe_in_simple_new(void) {
     // Initialize state
     x->currentNote = 0;
     x->currentVelocity = 0.0f;
+    x->currentGlide = 0.0f;
     
     post("mpe-in-simple: Simple MPE processor initialized");
     
     return (void *)x;
+}
+
+// Handle pitchbend message
+void mpe_in_simple_pitchbend(t_mpe_in_simple *x, t_floatarg value, t_floatarg channel) {
+    post("mpe-in-simple: pitchbend %.0f %.0f", value, channel);
+    
+    // Scale pitch bend from 0-16383 to -1.0 to +1.0
+    x->currentGlide = (value - 8192.0f) / 8192.0f;
+    
+    // Only send output if we have an active note
+    if (x->currentNote > 0) {
+        t_atom output[3];
+        SETFLOAT(&output[0], x->currentNote);
+        SETFLOAT(&output[1], x->currentVelocity);
+        SETFLOAT(&output[2], x->currentGlide);
+        
+        outlet_list(x->voice_outlet, &s_list, 3, output);
+        post("mpe-in-simple: Updated glide to %.3f", x->currentGlide);
+    }
 }
 
 // Handle bang (for testing)
@@ -84,6 +107,7 @@ extern "C" void mpe_in_simple_setup(void) {
     // Add methods
     class_addmethod(mpe_in_simple_class, (t_method)mpe_in_simple_noteon, gensym("noteon"), A_FLOAT, A_FLOAT, A_FLOAT, (t_atomtype)0);
     class_addmethod(mpe_in_simple_class, (t_method)mpe_in_simple_noteoff, gensym("noteoff"), A_FLOAT, A_FLOAT, A_FLOAT, (t_atomtype)0);
+    class_addmethod(mpe_in_simple_class, (t_method)mpe_in_simple_pitchbend, gensym("pitchbend"), A_FLOAT, A_FLOAT, (t_atomtype)0);
     class_addmethod(mpe_in_simple_class, (t_method)mpe_in_simple_bang, gensym("bang"), (t_atomtype)0);
     
     post("mpe-in-simple: Object class registered");

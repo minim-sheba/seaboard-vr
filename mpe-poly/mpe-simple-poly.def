@@ -1,6 +1,4 @@
 
 LIBRARY   mpesimple
 EXPORTS
-  mpesimple_setup
-  mpe_in_simple_setup
   mpe_poly_setup

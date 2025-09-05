@@ -1,4 +1,4 @@
 
-LIBRARY   mpepoly
+LIBRARY   mpe_poly
 EXPORTS
   mpe_poly_setup

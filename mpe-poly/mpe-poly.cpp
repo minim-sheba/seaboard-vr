@@ -391,8 +391,8 @@ extern "C" void mpe_poly_setup(void){
     class_addmethod(mpe_poly_class, (t_method)mpe_poly_normalize,  gensym("normalize"),A_FLOAT, 0);
     class_addmethod(mpe_poly_class, (t_method)mpe_poly_pbmode,     gensym("pbmode"),   A_FLOAT, 0);
     class_addmethod(mpe_poly_class, (t_method)mpe_poly_debug,      gensym("debug"),    A_FLOAT, 0);
-    class_addmethod(mpe_poly_class, (t_method)mpe_poly_flush,      gensym("flush"),    0);
-    class_addmethod(mpe_poly_class, (t_method)mpe_poly_reset,      gensym("reset"),    0);
+    class_addmethod(mpe_poly_class, (t_method)mpe_poly_flush,      gensym("flush"),     A_FLOAT, 0);
+    class_addmethod(mpe_poly_class, (t_method)mpe_poly_reset,      gensym("reset"),     A_FLOAT, 0);
 
     // Bang -> dump active state
     class_addbang(mpe_poly_class, (t_method)mpe_poly_bang);

@@ -2,6 +2,9 @@
 #include <vector>
 #include <string>
 
+// Forward declaration for the other setup function
+extern "C" void mpe_voice_setup(void);
+
 #define MAX_VOICES 6
 
 typedef struct {
@@ -177,4 +180,6 @@ extern "C" void mpe_poly_setup(void) {
     class_addmethod(mpe_poly_class, (t_method)mpe_poly_pitchbend, gensym("pitchbend"), A_FLOAT, A_FLOAT, 0);
     class_addmethod(mpe_poly_class, (t_method)mpe_poly_cc, gensym("cc"), A_FLOAT, A_FLOAT, A_FLOAT, 0);
     class_addmethod(mpe_poly_class, (t_method)mpe_poly_pressure, gensym("pressure"), A_FLOAT, A_FLOAT, 0);
+    // Also set up mpe_voice
+    mpe_voice_setup();
 }

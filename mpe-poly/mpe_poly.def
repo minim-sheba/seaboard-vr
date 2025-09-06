@@ -1,0 +1,4 @@
+LIBRARY   mpe_poly
+EXPORTS
+    mpe_poly_setup
+    mpe_voice_setup

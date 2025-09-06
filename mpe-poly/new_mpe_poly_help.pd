@@ -16,7 +16,7 @@
 #X obj 509 179 list trim;
 #X obj 510 66 touchin;
 #X obj 509 139 list prepend pressure;
-#X obj 61 288 mpe_voice 1;
+#X obj 61 288 mpe_voice 1, f 29;
 #X connect 0 0 1 0;
 #X connect 0 1 1 1;
 #X connect 0 2 1 2;

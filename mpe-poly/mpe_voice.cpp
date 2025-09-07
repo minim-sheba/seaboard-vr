@@ -69,14 +69,18 @@ static void mpe_voice_noteon(t_mpe_voice* x, t_floatarg note, t_floatarg vel, t_
 static void mpe_voice_pitchbend(t_mpe_voice* x, t_floatarg val, t_floatarg chan) {
     x->bend = val;
     if (x->active) {
-        outlet_float(x->out_pitch, mpe_voice_note_to_hz(x->note, x->bend, x->bend_range));
-        // Scale up the glide sensitivity
-        float glide_normalized = ((x->bend - 8192.0f) / 8192.0f);
-        float glide_scaled = glide_normalized * 50.0f;  // Scale by 50x
-        // Clamp to -1..+1 range
-        if (glide_scaled > 1.0f) glide_scaled = 1.0f;
-        if (glide_scaled < -1.0f) glide_scaled = -1.0f;
-        outlet_float(x->out_glide, glide_scaled);
+        // Scale up the bend for pitch calculation
+        float bend_scaled = ((val - 8192.0f) / 8192.0f) * 50.0f;  // Same scaling as glide
+        // Clamp the scaled bend
+        if (bend_scaled > 1.0f) bend_scaled = 1.0f;
+        if (bend_scaled < -1.0f) bend_scaled = -1.0f;
+
+        // Use scaled bend for pitch (but keep bend_range reasonable)
+        float pitch_with_bend = mpe_voice_note_to_hz(x->note, bend_scaled * 8192.0f, x->bend_range);
+        outlet_float(x->out_pitch, pitch_with_bend);
+
+        // Output the scaled glide for Unity
+        outlet_float(x->out_glide, bend_scaled);
     }
 }
 

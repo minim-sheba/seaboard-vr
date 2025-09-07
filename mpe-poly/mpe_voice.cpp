@@ -70,9 +70,13 @@ static void mpe_voice_pitchbend(t_mpe_voice* x, t_floatarg val, t_floatarg chan)
     x->bend = val;
     if (x->active) {
         outlet_float(x->out_pitch, mpe_voice_note_to_hz(x->note, x->bend, x->bend_range));
-        // Fix glide scaling: centre at 0, range -1 to +1
+        // Scale up the glide sensitivity
         float glide_normalized = ((x->bend - 8192.0f) / 8192.0f);
-        outlet_float(x->out_glide, glide_normalized);
+        float glide_scaled = glide_normalized * 50.0f;  // Scale by 50x
+        // Clamp to -1..+1 range
+        if (glide_scaled > 1.0f) glide_scaled = 1.0f;
+        if (glide_scaled < -1.0f) glide_scaled = -1.0f;
+        outlet_float(x->out_glide, glide_scaled);
     }
 }
 

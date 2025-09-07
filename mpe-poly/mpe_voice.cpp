@@ -96,7 +96,7 @@ static void* mpe_voice_new(t_symbol* s, int argc, t_atom* argv) {
     t_mpe_voice* x = (t_mpe_voice*)pd_new(mpe_voice_class);
 
     x->voice_num = (argc > 0 && argv[0].a_type == A_FLOAT) ? atom_getint(argv) : 1;
-    x->bend_range = 48.0f; // default bend range (can be set later)
+    x->bend_range = 2.0f; // default bend range (can be set later)
 
     x->out_note = outlet_new(&x->x_obj, &s_float);
     x->out_pitch = outlet_new(&x->x_obj, &s_float);

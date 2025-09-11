@@ -10,10 +10,12 @@ public class SeaboardReceiver : MonoBehaviour
     [Header("Avatar Control")]
     [SerializeField] private PlayerMovement avatarMovementScript;
     [SerializeField] private float seaboardMoveSpeed = 8f; // Speed when moving via Seaboard
+    [SerializeField] private float glideSensitivity = 10f; // Sensitivity for glide value
 
     private OscServer server;
     private bool currentNoteState = false;
     private bool isMovingForward = false;
+    private float currentGlideValue = 0f;
 
     void Start()
     {
@@ -43,11 +45,13 @@ public class SeaboardReceiver : MonoBehaviour
         // Handle Seaboard movement on main thread
         if (isMovingForward && avatarMovementScript != null)
         {
-            // Apply forward movement using the existing CharacterController
+            // Forward movement
             Vector3 forwardMove = avatarMovementScript.transform.forward * seaboardMoveSpeed * Time.deltaTime;
             avatarMovementScript.controller.Move(forwardMove);
-            
-            Debug.Log("Moving forward via Seaboard!");
+
+            // Glide rotation
+            float glideRotation = currentGlideValue * glideSensitivity * Time.deltaTime;
+            avatarMovementScript.transform.Rotate(0, glideRotation, 0);
         }
     }
 
@@ -61,19 +65,21 @@ public class SeaboardReceiver : MonoBehaviour
 
     private void OnNoteActiveReceived(string address, OscDataHandle data)
     {
-        // Get the MIDI note value (0 = no notes, >0 = note playing)
-        if (data.GetElementCount() > 0)
+        if (data.GetElementCount() > 1) // Check we have at least 2 values
         {
-            int noteActive = data.GetElementAsInt(0);
-            currentNoteState = (noteActive > 0); // Any note value > 0 means a note is playing
+            int noteActive = data.GetElementAsInt(0);    // First value
+            float glideValue = data.GetElementAsFloat(1); // Second value
 
+            currentNoteState = (noteActive > 0);
+            currentGlideValue = glideValue; // Store for use in Update()
+            
             Debug.Log($"Received OSC: {address} = {noteActive}");
+            Debug.Log($"Received Glide Value: {glideValue}");
 
             // Set movement state based on any note being active
             isMovingForward = currentNoteState;
         }
     }
-
     // Optional: Display connection status in the inspector
     void OnGUI()
     {

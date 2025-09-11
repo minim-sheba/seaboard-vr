@@ -9,15 +9,15 @@ public class SeaboardReceiver : MonoBehaviour
 
     [Header("Avatar Control")]
     [SerializeField] private PlayerMovement avatarMovementScript;
+    [SerializeField] private float seaboardMoveSpeed = 8f; // Speed when moving via Seaboard
 
     private OscServer server;
-    private bool lastNoteState = false;
     private bool currentNoteState = false;
-    private bool pendingFlap = false;
+    private bool isMovingForward = false;
 
     void Start()
     {
-        // Find the bird script if not assigned
+        // Find the PlayerMovement script if not assigned
         if (avatarMovementScript == null)
         {
             GameObject avatar = GameObject.Find("Player");
@@ -40,11 +40,14 @@ public class SeaboardReceiver : MonoBehaviour
 
     void Update()
     {
-        // Handle pending flap on main thread
-        if (pendingFlap)
+        // Handle Seaboard movement on main thread
+        if (isMovingForward && avatarMovementScript != null)
         {
-            TriggerBirdFlap();
-            pendingFlap = false;
+            // Apply forward movement using the existing CharacterController
+            Vector3 forwardMove = transform.forward * seaboardMoveSpeed * Time.deltaTime;
+            avatarMovementScript.controller.Move(forwardMove);
+            
+            Debug.Log("Moving forward via Seaboard!");
         }
     }
 
@@ -58,31 +61,16 @@ public class SeaboardReceiver : MonoBehaviour
 
     private void OnNoteActiveReceived(string address, OscDataHandle data)
     {
-        // Get the value (should be 0 or 1)
+        // Get the MIDI note value (0 = no notes, >0 = note playing)
         if (data.GetElementCount() > 0)
         {
             int noteActive = data.GetElementAsInt(0);
-            currentNoteState = (noteActive > 1);
+            currentNoteState = (noteActive > 0); // Any note value > 0 means a note is playing
 
             Debug.Log($"Received OSC: {address} = {noteActive}");
 
-            // Detect note press (transition from false to true)
-            if (currentNoteState && !lastNoteState)
-            {
-                // Queue flap to execute on main thread
-                pendingFlap = true;
-            }
-
-            lastNoteState = currentNoteState;
-        }
-    }
-
-    private void TriggerBirdFlap()
-    {
-        if (avatarMovementScript != null)
-        {
-            Debug.Log("Triggering bird flap from Seaboard!");
-            //avatarMovementScript.myRigidbody.linearVelocity = Vector2.up * avatarMovementScript.flapStrength;
+            // Set movement state based on any note being active
+            isMovingForward = currentNoteState;
         }
     }
 
@@ -91,5 +79,6 @@ public class SeaboardReceiver : MonoBehaviour
     {
         GUI.Label(new Rect(10, 10, 200, 20), $"OSC Port: {port}");
         GUI.Label(new Rect(10, 30, 200, 20), $"Note Active: {currentNoteState}");
+        GUI.Label(new Rect(10, 50, 200, 20), $"Moving Forward: {isMovingForward}");
     }
 }

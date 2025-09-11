@@ -1,4 +1,5 @@
 #N canvas 1731 49 2046 1495 10;
+#X declare -path mrpeach;
 #X obj 60 60 notein;
 #X obj 60 100 pack f f f;
 #X obj 60 140 list prepend noteon;
@@ -82,6 +83,7 @@
 #X obj 1687 1354 tgl 19 0 empty empty empty 0 -10 0 12 #fcfcfc #000000 #000000 0 1;
 #X obj 1604 1296 print pack;
 #X text 1561 1210 Format OSC message;
+#X obj 1792 87 declare -path mrpeach;
 #X connect 0 0 1 0;
 #X connect 0 1 1 1;
 #X connect 0 2 1 2;

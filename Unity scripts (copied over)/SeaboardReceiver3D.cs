@@ -44,7 +44,7 @@ public class SeaboardReceiver : MonoBehaviour
         if (isMovingForward && avatarMovementScript != null)
         {
             // Apply forward movement using the existing CharacterController
-            Vector3 forwardMove = transform.forward * seaboardMoveSpeed * Time.deltaTime;
+            Vector3 forwardMove = avatarMovementScript.transform.forward * seaboardMoveSpeed * Time.deltaTime;
             avatarMovementScript.controller.Move(forwardMove);
             
             Debug.Log("Moving forward via Seaboard!");

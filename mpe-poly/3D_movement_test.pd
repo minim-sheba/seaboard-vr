@@ -1,4 +1,4 @@
-#N canvas 4 49 3840 2002 10;
+#N canvas 3 52 2111 1771 10;
 #X declare -path mrpeach;
 #X obj 60 60 notein;
 #X obj 60 100 pack f f f;
@@ -110,9 +110,11 @@
 #X msg 1687 1209 send /seaboard/note_active \$1 \$2;
 #X obj 1687 1127 pack f f;
 #X listbox 1704 1159 20 0 0 0 - - - 0;
-#X obj 1346 1186 * 100;
 #X obj 1349 1225 t b f;
 #X floatatom 1400 1150 5 0 0 0 - - - 0;
+#X obj 1346 1186 * 50;
+#X msg 1757 1491 0.05;
+#X obj 1754 24 loadbang;
 #X connect 0 0 1 0;
 #X connect 0 1 1 1;
 #X connect 0 2 1 2;
@@ -246,12 +248,14 @@
 #X connect 103 0 104 0;
 #X connect 103 1 104 1;
 #X connect 104 0 102 0;
-#X connect 105 0 110 0;
+#X connect 105 0 112 0;
 #X connect 106 0 105 0;
 #X connect 107 0 74 0;
 #X connect 108 0 107 0;
 #X connect 108 0 109 0;
-#X connect 110 0 111 0;
-#X connect 111 0 108 0;
-#X connect 111 1 108 1;
-#X connect 112 0 110 1;
+#X connect 110 0 108 0;
+#X connect 110 1 108 1;
+#X connect 111 0 112 1;
+#X connect 112 0 110 0;
+#X connect 113 0 27 1;
+#X connect 114 0 113 0;
